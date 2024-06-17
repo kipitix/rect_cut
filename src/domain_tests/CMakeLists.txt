@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Domain LANGUAGES CXX)
+project(domain_tests LANGUAGES CXX)
 
 enable_testing()
 
@@ -11,11 +11,11 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(Domain tst_domain.cpp)
-add_test(NAME Domain COMMAND Domain)
+add_executable(domain_tests tst_domain.cpp)
+add_test(NAME domain_tests COMMAND Domain)
 
-target_link_libraries(Domain PRIVATE Qt${QT_VERSION_MAJOR}::Test)
+target_link_libraries(domain_tests PRIVATE Qt${QT_VERSION_MAJOR}::Test)
 

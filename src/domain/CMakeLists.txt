@@ -12,8 +12,9 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 add_library(domain STATIC
-  domain.cpp
-  domain.h
+  plane.h plane.cpp
+  chunk.h chunk.cpp
+  chunkmanager.h chunkmanager.cpp
 )
 
 target_link_libraries(domain PRIVATE Qt${QT_VERSION_MAJOR}::Core)
