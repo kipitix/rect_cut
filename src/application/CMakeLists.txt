@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(rect_cut VERSION 0.1 LANGUAGES CXX)
+project(rect_cut_app VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
