@@ -1,6 +1,6 @@
 #include "plane.h"
 
-Plane::Plane(const QSize &size)
+Plane::Plane(const QSizeF &size)
     : _size{ size }
 {
 }
@@ -12,22 +12,22 @@ QSizeF Plane::size() const
 
 QPair<bool, QString> Plane::addChunk(const ChunkPtr &chunk)
 {
-    if (_chunks.contains(chunk->id())) {
-        return { false, QString{ "Plane already contains chunk with ID: '%1'" }.arg(chunk->id().toString()) };
+    if (_chunks.contains(chunk->uuid())) {
+        return { false, QString{ "Plane already contains chunk with ID: '%1'" }.arg(chunk->uuid().toString()) };
     }
 
-    _chunks.insert(chunk->id(), chunk);
+    _chunks.insert(chunk->uuid(), chunk);
 
     return { true, "" };
 }
 
 QPair<bool, QString> Plane::removeChunk(const ChunkPtr &chunk)
 {
-    if (!_chunks.contains(chunk->id())) {
-        return { false, QString{ "Plane does not contains chunk with ID: '%1'" }.arg(chunk->id().toString()) };
+    if (!_chunks.contains(chunk->uuid())) {
+        return { false, QString{ "Plane does not contains chunk with ID: '%1'" }.arg(chunk->uuid().toString()) };
     }
 
-    _chunks.remove(chunk->id());
+    _chunks.remove(chunk->uuid());
 
     return { true, "" };
 }

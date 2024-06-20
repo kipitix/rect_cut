@@ -16,7 +16,7 @@
 class Plane
 {
 public:
-    Plane(const QSize &size);
+    Plane(const QSizeF &size);
 
     QSizeF size() const;
 

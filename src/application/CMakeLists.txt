@@ -17,6 +17,9 @@ qt_add_qml_module(rect_cut
     URI rect_cut_app
     VERSION 1.0
     QML_FILES ui/Main.qml
+    QML_FILES ui/Plane.qml
+    SOURCES app/planeviewmodel.h app/planeviewmodel.cpp
+    SOURCES app/planeapi.h app/planeapi.cpp
 )
 
 qt_add_lupdate(rect_cut
@@ -34,11 +37,16 @@ set_target_properties(rect_cut PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+target_include_directories(rect_cut
+    PRIVATE ../domain)
+
 target_link_libraries(rect_cut
     PRIVATE Qt6::Quick
+    domain
 )
 
 include(GNUInstallDirs)
+
 install(TARGETS rect_cut
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
