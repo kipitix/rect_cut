@@ -20,6 +20,8 @@ qt_add_qml_module(rect_cut
     QML_FILES ui/Plane.qml
     SOURCES app/planeviewmodel.h app/planeviewmodel.cpp
     SOURCES app/planeapi.h app/planeapi.cpp
+    QML_FILES ui/Input.qml
+    QML_FILES ui/Control.qml
 )
 
 qt_add_lupdate(rect_cut

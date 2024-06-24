@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
 
     auto plane = PlanePtr::create(QSizeF{ 500, 500 });
 
-    auto chunk1 = ChunkPtr::create(QSizeF{ 100, 100 });
-    auto chunk2 = ChunkPtr::create(QSizeF{ 50, 50 });
+    auto chunk1 = ChunkPtr::create(QSizeF{ 100, 100 }, Qt::red);
+    auto chunk2 = ChunkPtr::create(QSizeF{ 50, 50 }, Qt::green);
 
     plane->addChunk(chunk1);
     plane->addChunk(chunk2);

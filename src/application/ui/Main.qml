@@ -1,15 +1,43 @@
 import QtQuick
+import QtQuick.Controls
 
-Window {
+ApplicationWindow {
+    id: root
+
     width: 1024
     height: 768
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Rect Cut")
 
-
-    Plane {
-        x: 50
-        y: 50
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("&File")
+            Action { text: qsTr("&New...") }
+            Action { text: qsTr("&Open...") }
+            Action { text: qsTr("&Save") }
+            Action { text: qsTr("Save &As...") }
+            MenuSeparator { }
+            Action { text: qsTr("&Quit") }
+        }
+        Menu {
+            title: qsTr("&Edit")
+            Action { text: qsTr("Cu&t") }
+            Action { text: qsTr("&Copy") }
+            Action { text: qsTr("&Paste") }
+        }
+        Menu {
+            title: qsTr("&Help")
+            Action { text: qsTr("&About") }
+        }
     }
+
+
+    Input {
+
+    }
+
+    // Plane {
+    //     x: 500
+    // }
 
 }

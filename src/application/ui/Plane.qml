@@ -26,8 +26,8 @@ Item {
 
             // x: chunkData.x
             // y: chunkData.y
-            width: chunkData.width
-            height: chunkData.height
+            width: chunkData.size.width
+            height: chunkData.size.height
 
             border {
                 width: 1
@@ -46,11 +46,10 @@ Item {
                 drag.target: parent
             }
 
-            Text {
-                anchors.fill: parent
-
-                text: chunkData.uuid
-            }
+            // Text {
+            //     anchors.fill: parent
+            //     text: chunkData.uuid
+            // }
         }
     }
 
