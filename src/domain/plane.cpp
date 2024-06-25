@@ -10,6 +10,16 @@ QSizeF Plane::size() const
     return _size;
 }
 
+void Plane::setWidth(double width)
+{
+    _size.setWidth(width);
+}
+
+void Plane::setHeight(double height)
+{
+    _size.setHeight(height);
+}
+
 QPair<bool, QString> Plane::addChunk(const ChunkPtr &chunk)
 {
     if (_chunks.contains(chunk->uuid())) {

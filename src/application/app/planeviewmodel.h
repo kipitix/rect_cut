@@ -22,6 +22,8 @@ public:
 
     QVariantList chunkList() const;
 
+    void refresh();
+
 signals:
     void sizeChanged();
     void chunkListChanged();

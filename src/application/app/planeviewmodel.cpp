@@ -33,3 +33,9 @@ QVariantList PlaneViewModel::chunkList() const
 
     return result;
 }
+
+void PlaneViewModel::refresh()
+{
+    emit sizeChanged();
+    emit chunkListChanged();
+}

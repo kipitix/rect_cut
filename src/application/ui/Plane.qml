@@ -1,8 +1,16 @@
 import QtQuick
+ import QtQuick.Controls
 
-Item {
-
+Flickable {
     id: root
+
+    ScrollBar.vertical: ScrollBar { }
+    ScrollBar.horizontal: ScrollBar { }
+
+    contentWidth: plane.width
+    contentHeight: plane.height
+
+    clip: true
 
     Rectangle {
         id: plane

@@ -31,13 +31,25 @@ ApplicationWindow {
         }
     }
 
+    SplitView {
+        id: splitView
 
-    Input {
+        anchors.fill: parent
 
+        orientation: Qt.Horizontal
+
+        Input {
+            id: input
+
+            SplitView.fillHeight: true
+            SplitView.minimumWidth: 300
+        }
+
+        Plane {
+            id: plane
+
+            SplitView.fillHeight: true
+            SplitView.minimumWidth: 300
+        }
     }
-
-    // Plane {
-    //     x: 500
-    // }
-
 }

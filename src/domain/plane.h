@@ -14,11 +14,14 @@
  * One plane can be split into several chunks.
  */
 class Plane
-{
+{    
 public:
     Plane(const QSizeF &size);
 
     QSizeF size() const;
+
+    void setWidth(double width);
+    void setHeight(double height);
 
     QPair<bool, QString> addChunk(const ChunkPtr &chunk);
     QPair<bool, QString> removeChunk(const ChunkPtr &chunk);

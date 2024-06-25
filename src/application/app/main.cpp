@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     plane->addChunk(chunk2);
 
     auto planeViewModel = PlaneViewModelPtr::create(plane);
-    auto planeAPI = PlaneAPIPtr::create();
+    auto planeAPI = PlaneAPIPtr::create(plane, planeViewModel);
 
     QQmlApplicationEngine engine;
     QObject::connect(
