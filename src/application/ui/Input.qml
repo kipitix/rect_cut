@@ -24,7 +24,10 @@ Item {
             text: qsTr("Calculate")
 
             onClicked: {
-                planeAPI.calculate();
+                // Trim last item of chunkTemplatesModel.rows
+                // Becase of last item just for UI
+                const templates = chunkTemplatesModel.rows.slice(0, chunkTemplatesModel.rows.length - 1);
+                planeAPI.calculate(planeWidth.text, planeHeight.text, templates);
             }
         }
     }
@@ -53,6 +56,8 @@ Item {
                 }
 
                 TextField {
+                    id: planeWidth
+                    
                     implicitWidth: 60
 
                     text: planeViewModel.size.width
@@ -61,10 +66,6 @@ Item {
                         decimals: 2
                         locale: Qt.locale().toString()
                         notation: DoubleValidator.StandardNotation
-                    }
-
-                    onTextEdited: {
-                        planeAPI.setPlaneWidth(text);
                     }
                 }
             }
@@ -79,6 +80,8 @@ Item {
                 }
 
                 TextField {
+                    id: planeHeight
+                    
                     implicitWidth: 60
 
                     text: planeViewModel.size.height
@@ -141,6 +144,9 @@ Item {
             rowSpacing: 1
 
             model: TableModel {
+                
+                id: chunkTemplatesModel
+                
                 TableModelColumn { display: "width" }
                 TableModelColumn { display: "height" }
                 TableModelColumn { display: "count" }
@@ -151,15 +157,13 @@ Item {
                     {
                         width: 100.0,
                         height: 100.0,
-                        count: 1,
+                        count: 0,
                         color: "black",
                         action: "➕"
                     }
                 ]
             }
             delegate: DelegateChooser {
-
-
                 DelegateChoice {
                     column: 0
                     delegate: TextField {
@@ -214,22 +218,22 @@ Item {
                 }
                 DelegateChoice {
                     column: 3
-                    delegate: Rectangle {
+                    delegate: Button {
 
                         property bool isLastRow: (model.row === tableView.model.rowCount-1)
-
-                        implicitWidth: tableView.width / 5
-                        color: model.display
+                        
                         visible: !isLastRow
-
-                        MouseArea {
-                            id: colorMouseArea
-                            anchors.fill: parent
-                            onClicked: {
-                                colorDialog.selectedColor = model.display;
-                                colorDialog.rowToSetColor = model.row;
-                                colorDialog.visible = true;
-                            }
+                        
+                        implicitWidth: tableView.width / 5
+                        
+                        background: Rectangle {
+                            color: model.display
+                        }                        
+                                                
+                        onClicked: {
+                            colorDialog.selectedColor = model.display.toString();
+                            colorDialog.rowToSetColor = model.row;
+                            colorDialog.visible = true;                            
                         }
                     }
                 }
@@ -279,6 +283,9 @@ Item {
             buttons: MessageDialog.Yes | MessageDialog.No
 
             onAccepted: {
+                if (rowToRemove === -1)
+                    return;
+                
                 removeDialog.visible = false;
                 tableView.model.removeRow(rowToRemove);
                 rowToRemove = -1;
@@ -296,9 +303,20 @@ Item {
             property int rowToSetColor: -1
 
             onAccepted: {
+                if (rowToSetColor === -1)
+                    return;
+                
+                colorDialog.visible = false;
+
                 let rowData = tableView.model.getRow(rowToSetColor);
-                rowData.color = selectedColor;
+                rowData.color = selectedColor.toString();
                 tableView.model.setRow(rowToSetColor, rowData);
+                
+                rowToSetColor = -1;
+            }
+            
+            onRejected: {
+                colorDialog.visible = false;
                 rowToSetColor = -1;
             }
         }

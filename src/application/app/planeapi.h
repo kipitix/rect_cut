@@ -3,24 +3,24 @@
 
 #include <QObject>
 #include <QSharedPointer>
+#include <QVariantList>
 
 #include "plane.h"
+#include "chunkmanager.h"
 #include "planeviewmodel.h"
 
 class PlaneAPI : public QObject
 {
     Q_OBJECT
 public:
-    explicit PlaneAPI(const PlanePtr &plane, const PlaneViewModelPtr &planeViewModel);
-
-    Q_INVOKABLE bool setPlaneWidth(double width);
-    Q_INVOKABLE bool setPlaneHeight(double height);
-
-    Q_INVOKABLE bool calculate();
+    explicit PlaneAPI(const PlanePtr &plane, const ChunkManagerPtr &chunkManager, const PlaneViewModelPtr &planeViewModel);
+    
+    Q_INVOKABLE bool calculate(double planeWidth, double planeHeight, const QVariantList &chunkTemplates);
 
 private:
 
     PlanePtr _plane;
+    ChunkManagerPtr _chunkManager;
     PlaneViewModelPtr _planeViewModel;
 };
 

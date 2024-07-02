@@ -10,17 +10,12 @@ QSizeF Plane::size() const
     return _size;
 }
 
-void Plane::setWidth(double width)
+void Plane::setSize(const QSizeF &size)
 {
-    _size.setWidth(width);
+    _size = size;
 }
 
-void Plane::setHeight(double height)
-{
-    _size.setHeight(height);
-}
-
-QPair<bool, QString> Plane::addChunk(const ChunkPtr &chunk)
+Result Plane::addChunk(const ChunkPtr &chunk)
 {
     if (_chunks.contains(chunk->uuid())) {
         return { false, QString{ "Plane already contains chunk with ID: '%1'" }.arg(chunk->uuid().toString()) };
@@ -31,7 +26,7 @@ QPair<bool, QString> Plane::addChunk(const ChunkPtr &chunk)
     return { true, "" };
 }
 
-QPair<bool, QString> Plane::removeChunk(const ChunkPtr &chunk)
+Result Plane::removeChunk(const ChunkPtr &chunk)
 {
     if (!_chunks.contains(chunk->uuid())) {
         return { false, QString{ "Plane does not contains chunk with ID: '%1'" }.arg(chunk->uuid().toString()) };
@@ -40,6 +35,11 @@ QPair<bool, QString> Plane::removeChunk(const ChunkPtr &chunk)
     _chunks.remove(chunk->uuid());
 
     return { true, "" };
+}
+
+void Plane::clearChunks()
+{
+    _chunks.clear();    
 }
 
 QList<ChunkPtr> Plane::chunks() const

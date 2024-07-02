@@ -5,6 +5,9 @@
 #include <QTranslator>
 #include <QQmlContext>
 
+#include "plane.h"
+#include "chunkmanager.h"
+
 #include "planeviewmodel.h"
 #include "planeapi.h"
 
@@ -23,15 +26,10 @@ int main(int argc, char *argv[])
     }
 
     auto plane = PlanePtr::create(QSizeF{ 500, 500 });
-
-    auto chunk1 = ChunkPtr::create(QSizeF{ 100, 100 }, Qt::red);
-    auto chunk2 = ChunkPtr::create(QSizeF{ 50, 50 }, Qt::green);
-
-    plane->addChunk(chunk1);
-    plane->addChunk(chunk2);
+    auto chunkManager = ChunkManagerPtr::create();
 
     auto planeViewModel = PlaneViewModelPtr::create(plane);
-    auto planeAPI = PlaneAPIPtr::create(plane, planeViewModel);
+    auto planeAPI = PlaneAPIPtr::create(plane, chunkManager, planeViewModel);
 
     QQmlApplicationEngine engine;
     QObject::connect(

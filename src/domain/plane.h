@@ -6,6 +6,7 @@
 #include <QSizeF>
 #include <QPair>
 
+#include "defs.h"
 #include "chunk.h"
 
 /**
@@ -19,15 +20,15 @@ public:
     Plane(const QSizeF &size);
 
     QSizeF size() const;
+    void setSize(const QSizeF &size);
 
-    void setWidth(double width);
-    void setHeight(double height);
-
-    QPair<bool, QString> addChunk(const ChunkPtr &chunk);
-    QPair<bool, QString> removeChunk(const ChunkPtr &chunk);
-
+    Result addChunk(const ChunkPtr &chunk);
+    Result removeChunk(const ChunkPtr &chunk);
+    
+    void clearChunks();
+    
     QList<ChunkPtr> chunks() const;
-
+    
 private:
     QSizeF _size;
     QMap<QUuid, ChunkPtr> _chunks;

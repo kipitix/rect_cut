@@ -1,7 +1,8 @@
 #include "chunk.h"
 
-Chunk::Chunk(const QSizeF &size, const QColor &color)
+Chunk::Chunk(const QPointF &position, const QSizeF &size, const QColor &color)
     : _uuid{ QUuid::createUuid() }
+    , _position{ position }
     , _size{ size }
     , _color{ color }
 {
@@ -10,6 +11,11 @@ Chunk::Chunk(const QSizeF &size, const QColor &color)
 QUuid Chunk::uuid() const
 {
     return _uuid;
+}
+
+QPointF Chunk::position() const
+{
+    return _position;
 }
 
 QSizeF Chunk::size() const

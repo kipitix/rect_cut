@@ -12,6 +12,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui)
 
 add_library(domain STATIC
+  defs.h
   plane.h plane.cpp
   chunk.h chunk.cpp
   chunkmanager.h chunkmanager.cpp

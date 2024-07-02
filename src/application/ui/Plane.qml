@@ -32,8 +32,8 @@ Flickable {
         delegate: Rectangle {
             property var chunkData: modelData
 
-            // x: chunkData.x
-            // y: chunkData.y
+            x: chunkData.position.x
+            y: chunkData.position.y
             width: chunkData.size.width
             height: chunkData.size.height
 
