@@ -31,6 +31,9 @@ void Domain::chunkManagerEasyCase1() {
     
     auto [isOk, err] = chunkManager->calculate(plane, QSizeF{ 1, 1 }, chunkTemplates);
     
+    for (const auto &chunk : plane->chunks()) {
+        qDebug() << chunk->rect();
+    }
     
 }
 

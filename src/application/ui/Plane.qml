@@ -1,5 +1,5 @@
 import QtQuick
- import QtQuick.Controls
+import QtQuick.Controls
 
 Flickable {
     id: root
@@ -32,10 +32,10 @@ Flickable {
         delegate: Rectangle {
             property var chunkData: modelData
 
-            x: chunkData.position.x
-            y: chunkData.position.y
-            width: chunkData.size.width
-            height: chunkData.size.height
+            x: chunkData.rect.x
+            y: chunkData.rect.y
+            width: chunkData.rect.width
+            height: chunkData.rect.height
 
             border {
                 width: 1

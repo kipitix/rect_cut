@@ -28,7 +28,7 @@ Result ChunkManager::calculate(const PlanePtr &plane, const QSizeF &planeSize, c
     
     for (const auto &chunkTemplate : qAsConst(input)) {
         for (auto i = 0; i < chunkTemplate.count; i ++) {
-            auto chunk = ChunkPtr::create(pos, chunkTemplate.size, chunkTemplate.color);
+            auto chunk = ChunkPtr::create(QRectF{ pos, chunkTemplate.size }, chunkTemplate.color);
             plane->addChunk(chunk);
             
             pos.setX(pos.x() + chunkTemplate.size.width());

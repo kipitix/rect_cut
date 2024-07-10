@@ -22,8 +22,7 @@ QVariantList PlaneViewModel::chunkList() const
     for (const auto &chunk : qAsConst(chunks)) {
         auto chunkData = QVariantMap{
             { "uuid", chunk->uuid().toString() },
-            { "position", chunk->position() },
-            { "size", chunk->size() },
+            { "rect", chunk->rect() },
             { "color", chunk->color() },
             };
         result[index] = chunkData;
